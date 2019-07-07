@@ -20,18 +20,16 @@ const recipeBook = [
     {
         "name": "salad",
         "type": "appetiser",
-        "ingredients": [
-            {
+        "ingredients": [{
                 "name": "veggies",
                 "quantity": 3
-            }
-        ]
+            }],
+        "ingredientCount": 3
     },
     {
         "name": "hot dog bun",
         "type": "main",
-        "ingredients": [
-            {
+        "ingredients": [{
                 "name": "bun",
                 "quantity": 1
             },
@@ -42,14 +40,13 @@ const recipeBook = [
             {
                 "name": "sauce",
                 "quantity": 1
-            }
-        ]
+            }],
+        "ingredientCount": 3
     },
     {
         "name": "meatballs spaghetti",
         "type": "main",
-        "ingredients": [
-            {
+        "ingredients": [{
                 "name": "pasta",
                 "quantity": 1
             },
@@ -60,14 +57,13 @@ const recipeBook = [
             {
                 "name": "sauce",
                 "quantity": 1
-            }
-        ]
+            }],
+        "ingredientCount": 3
     },
     {
         "name": "hamburger",
         "type": "main",
-        "ingredients": [
-            {
+        "ingredients": [{
                 "name": "bun",
                 "quantity": 2
             },
@@ -78,14 +74,13 @@ const recipeBook = [
             {
                 "name": "veggies",
                 "quantity": 1
-            }
-        ]
+            }],
+        "ingredientCount": 4
     },
     {
         "name": "cheeseburger",
         "type": "main",
-        "ingredients": [
-            {
+        "ingredients": [{
                 "name": "bun",
                 "quantity": 2
             },
@@ -100,28 +95,26 @@ const recipeBook = [
             {
                 "name": "cheese",
                 "quantity": 1
-            }
-        ]
+            }],
+        "ingredientCount": 5
     },
     {
         "name": "chocolate milkshake",
         "type": "drinks",
-        "ingredients": [
-            {
+        "ingredients": [{
                 "name": "milk",
                 "quantity": 2
             },
             {
                 "name": "chocolate",
                 "quantity": 1
-            }
-        ]
+            }],
+        "ingredientCount": 3
     },
     {
         "name": "chocolate ice cream",
         "type": "desert",
-        "ingredients": [
-            {
+        "ingredients": [{
                 "name": "ice",
                 "quantity": 1
             },
@@ -132,8 +125,8 @@ const recipeBook = [
             {
                 "name": "milk",
                 "quantity": 1
-            }
-        ]
+            }],
+        "ingredientCount": 3
     }
 ];
 
@@ -152,7 +145,64 @@ function stockPantry () {
 function checkRecipe () {
     console.log("In the pot:", cookingPot);
 
+    // consolidate ingredients in the pot
+    let pot = new Object();
+    for(let i = 0; i < cookingPot.length; i++) {
+        if(pot[cookingPot[i]] != null) {
+            pot[cookingPot[i]] += 1;
+        } else {
+            pot[cookingPot[i]] = 1;
+        }
+    }
 
+    // compare pot with recipeBook to find possible dish created
+    let dishName = false;
+
+    // for each recipe
+    recipeBook.map(recipe => {
+        console.log("recipe name: ", recipe.name);
+        let count = 0;
+        let found = false;
+
+        recipe.ingredients.map(item => {
+            console.log("item name: ", item.name);
+            console.log("item quantity: ", item.quantity);
+
+            // check if pot has this ingredient
+            if (pot[item.name] === item.quantity) {
+                console.log("found", pot[item.name], item.name);
+                // count = count + item.quantity;
+                found = true;
+            }
+            else {
+                console.log("ERROR");
+                found = false;
+                // count++;
+            }
+        });
+
+        console.log("count", count);
+        console.log("ingredientCount", recipe.ingredientCount);
+
+        if (count === recipe.ingredientCount && found === true){
+            dishName = recipe.name;
+            console.log("found", pot);
+        }
+        // else {
+        //     console.log("not", recipe.name)
+        // }
+    });
+
+    if (dishName != false) {
+        console.log("found!", pot);
+        cookingPot.length = 0;
+        dish.innerText = dishName;
+    }
+    else if (dishName === false && cookingPot.length === 5) {
+        console.log("you have created a mess!");
+        cookingPot.length = 0;
+        console.log(cookingPot);
+    }
 
     // dish.innerText = cookingPot.join(", ");
 };
