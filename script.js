@@ -176,6 +176,7 @@ function checkRecipe () {
     }
     if (dishName !== false) {
         dish.innerText = dishName;
+        message.innerText = `You made a serving of ${dishName}`
         cookingPot.length = 0;
     } else if (dishName === false && cookingPot.length === 5) {
         dish.innerText = "You've made a mess!";
@@ -189,13 +190,27 @@ function addToPot () {
     let input = event.target.value.toLowerCase();
     console.log(input);
 
-    if (pantry.includes(input)) {
+    if (input === "clear") {
+        // clear what's currently in the cooking pot
+        cookingPot.length = 0;
+        message.innerText = "You've wasted ingredients clearing the pot!";
+    }
+    else if (pantry.includes(input)) {
         message.innerText = "";
         cookingPot.push(input);
         checkRecipe();
-    } else {
-        message.innerText = "Your ingredient is not found in the pantry!";
     }
+    else {
+        message.innerText = "Your ingredient is not found in the pantry!";
+    };
+
+    // if (pantry.includes(input)) {
+    //     message.innerText = "";
+    //     cookingPot.push(input);
+    //     checkRecipe();
+    // } else {
+    //     message.innerText = "Your ingredient is not found in the pantry!";
+    // }
 
     // clear input for next ingredient
     event.target.value = "";
