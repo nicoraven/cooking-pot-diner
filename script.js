@@ -16,6 +16,127 @@ const cookingPot = [];
 // chocolate milkshake: milk, milk, chocolate
 // chocolate ice cream: ice, chocolate, milk
 
+const recipeBook = [
+    {
+        "name": "salad",
+        "type": "appetiser",
+        "ingredients": [
+            {
+                "name": "veggies",
+                "quantity": 3
+            }
+        ]
+    },
+    {
+        "name": "hot dog bun",
+        "type": "main",
+        "ingredients": [
+            {
+                "name": "bun",
+                "quantity": 1
+            },
+            {
+                "name": "meat",
+                "quantity": 1
+            },
+            {
+                "name": "sauce",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "name": "meatballs spaghetti",
+        "type": "main",
+        "ingredients": [
+            {
+                "name": "pasta",
+                "quantity": 1
+            },
+            {
+                "name": "meat",
+                "quantity": 1
+            },
+            {
+                "name": "sauce",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "name": "hamburger",
+        "type": "main",
+        "ingredients": [
+            {
+                "name": "bun",
+                "quantity": 2
+            },
+            {
+                "name": "meat",
+                "quantity": 1
+            },
+            {
+                "name": "veggies",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "name": "cheeseburger",
+        "type": "main",
+        "ingredients": [
+            {
+                "name": "bun",
+                "quantity": 2
+            },
+            {
+                "name": "meat",
+                "quantity": 1
+            },
+            {
+                "name": "veggies",
+                "quantity": 1
+            },
+            {
+                "name": "cheese",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "name": "chocolate milkshake",
+        "type": "drinks",
+        "ingredients": [
+            {
+                "name": "milk",
+                "quantity": 2
+            },
+            {
+                "name": "chocolate",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "name": "chocolate ice cream",
+        "type": "desert",
+        "ingredients": [
+            {
+                "name": "ice",
+                "quantity": 1
+            },
+            {
+                "name": "chocolate",
+                "quantity": 1
+            },
+            {
+                "name": "milk",
+                "quantity": 1
+            }
+        ]
+    }
+];
+
 const pantry = ["veggies", "bun", "meat", "sauce", "pasta", "cheese", "milk", "chocolate", "ice"];
 
 function stockPantry () {
@@ -31,7 +152,9 @@ function stockPantry () {
 function checkRecipe () {
     console.log("In the pot:", cookingPot);
 
-    dish.innerText = cookingPot.join(", ");
+
+
+    // dish.innerText = cookingPot.join(", ");
 };
 
 function addToPot () {
