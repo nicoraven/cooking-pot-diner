@@ -158,56 +158,34 @@ function checkRecipe () {
     // compare pot with recipeBook to find possible dish created
     let dishName = false;
 
-    // for each recipe
-    recipeBook.map(recipe => {
-        console.log("recipe name: ", recipe.name);
-        let count = 0;
-        let found = false;
+    for (let i = 0; i < recipeBook.length; i++) {
+        // console.log(recipeBook[i].name);
+        let ingredients = recipeBook[i].ingredients;
+        let counter = 0;
 
-        recipe.ingredients.map(item => {
-            console.log("item name: ", item.name);
-            console.log("item quantity: ", item.quantity);
-
-            // check if pot has this ingredient
-            if (pot[item.name] === item.quantity) {
-                console.log("found", pot[item.name], item.name);
-                // count = count + item.quantity;
-                found = true;
+        for (var j = 0; j < ingredients.length; j++) {
+            // console.log(ingredients[j].name);
+            if (pot[ingredients[j].name] === ingredients[j].quantity) {
+                counter = counter + ingredients[j].quantity;
+                console.log(`found ${pot[ingredients[j].name]} ${ingredients[j].name} in ${recipeBook[i].name}!`);
+                if (counter === recipeBook[i].ingredientCount && cookingPot.length === recipeBook[i].ingredientCount) {
+                    dishName = recipeBook[i].name;
+                }
             }
-            else {
-                console.log("ERROR");
-                found = false;
-                // count++;
-            }
-        });
-
-        console.log("count", count);
-        console.log("ingredientCount", recipe.ingredientCount);
-
-        if (count === recipe.ingredientCount && found === true){
-            dishName = recipe.name;
-            console.log("found", pot);
         }
-        // else {
-        //     console.log("not", recipe.name)
-        // }
-    });
-
-    if (dishName != false) {
-        console.log("found!", pot);
-        cookingPot.length = 0;
+    }
+    if (dishName !== false) {
         dish.innerText = dishName;
-    }
-    else if (dishName === false && cookingPot.length === 5) {
-        console.log("you have created a mess!");
         cookingPot.length = 0;
-        console.log(cookingPot);
+    } else if (dishName === false && cookingPot.length === 5) {
+        dish.innerText = "You've made a mess!";
+        cookingPot.length = 0;
     }
-
-    // dish.innerText = cookingPot.join(", ");
 };
 
 function addToPot () {
+    dish.innerText = "";
+
     let input = event.target.value.toLowerCase();
     console.log(input);
 
