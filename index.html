@@ -10,15 +10,19 @@
     <h1>Cooking Pot</h1>
 
     <div id="game-container">
-        <div id="left-pane">
-            <h3>Pantry</h3>
+        <div id="left-pane" class="pane">
+            <h2>Pantry</h2>
             <ul id="pantry-list"></ul>
         </div>
-        <div id="right-pane">
+        <div id="right-pane" class="pane">
             <div id="order-tracker"></div>
+            <div id="cooking-pot">
+                <span id="dish"></span>
+            </div>
             <div id="kitchen-counter">
                 <span id="chef-note">add ingredients to the cooking pot!</span>
                 <input type="text" id="chef">
+                <p id="message"></p>
             </div>
 
         </div>

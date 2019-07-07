@@ -8,13 +8,32 @@ body {
 }
 
 div {
-	border: solid 1px red;
+	/*border: solid 1px red;*/
 }
 
 h1 {
 	border-bottom: solid 3px #f00;
 	display: inline-block;
 	padding-bottom: 5px;
+	font-size: 2.6em;
+}
+
+h2 {
+	margin: 0;
+	font-size: 1.8em;
+}
+
+ul {
+	margin: 10px 0;
+}
+
+li {
+	text-align: left;
+}
+
+img {
+	width: 50%;
+	margin: 20px auto;
 }
 
 #chef {
@@ -25,6 +44,12 @@ h1 {
 	padding: 4px;
 	border-radius: 0.4rem;
 	text-align: center;
+	font-family: inherit;
+}
+
+#chef:focus {
+	outline: none;
+	border: solid 2px #f00;
 }
 
 #game-container {
@@ -33,20 +58,56 @@ h1 {
 	margin: 0 auto;
 }
 
+.pane{
+	padding: 20px;
+}
+
 #left-pane {
 	flex-grow: 1;
 }
 
 #right-pane {
 	flex-grow: 2;
+	display: flex;
+	flex-direction: column;
+	/*justify-content: center;*/
+}
+
+#cooking-pot {
+	background-image: url("images/pot-on-stove.png");
+	background-size: cover;
+	width: 80%;
+	display: inline-block;
+	margin: 0 auto;
+	position: relative;
+}
+
+#cooking-pot:after {
+	content: "";
+	display: block;
+	padding-bottom: 100%;
+}
+
+#dish {
+	color:#FFF;
+	font-size: 28px;
+	font-weight: 700;
+	text-align: center;
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	left: 0;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 
 #kitchen-counter {
-	border: solid 1px blue;
+	/*border: solid 1px blue;*/
 	width: 270px;
-	margin: 0 auto;
+	margin: 10px auto;
 }
 
 #order-tracker {
 	display: flex;
+	justify-content: center;
 }
